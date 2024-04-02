@@ -18,11 +18,11 @@ This will delete & add the following entries
     update add abc.d.example.com. 2 A 123.123.123.123
     update add abc.d.example.com. 2 TXT "Updated by curltest 2024-04-02T16:54:03Z"
 
-#Production Usage
+# Production Usage
 
 You should secure the update.php with authentication and HTTPs, e.g. using traefik.
 
-#TODO
+# TODO
 
  - [ ] Multiple Domains
  - [ ] IPv6
