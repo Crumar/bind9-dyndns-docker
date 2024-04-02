@@ -4,7 +4,7 @@ A local web server (nginx) is added, that provides `update.php` with parameters 
 
 Example usage (not production ready):
 
-    docker run dyndn XZY \
+    docker run --name bind9-dyndns -d bind9-dyndns-docker:latest \
         -p 53:53/udp \
         -p 53:53/tcp \
         -p 8080:80  \
