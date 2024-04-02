@@ -1,0 +1,11 @@
+$ORIGIN .
+$TTL 2  ; 2 seconds
+d.<DOMAIN>        IN SOA  ns.<DOMAIN>. postmaster.<DOMAIN>. (
+                                2017054558 ; serial
+                                28800      ; refresh (8 hours)
+                                1800       ; retry (30 minutes)
+                                604800     ; expire (1 week)
+                                86400      ; minimum (1 day)
+                                )
+                        NS      ns.<DOMAIN>.
+$ORIGIN d.<DOMAIN>.
