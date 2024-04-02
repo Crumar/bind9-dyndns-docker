@@ -15,6 +15,7 @@ This creates a zone `d.example.com`, whose subdomains can be set using the `upda
     curl -X GET http://localhost:8080/update.php?subdomain=abc&addr=123.123.123.123&source=curltest
 
 This will delete & add the following entries 
+
     update add abc.d.example.com. 2 A 123.123.123.123
     update add abc.d.example.com. 2 TXT "Updated by curltest 2024-04-02T16:54:03Z"
 
