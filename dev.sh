@@ -1,6 +1,7 @@
 docker build -t bind9-dyndns-docker:dev_local .
-docker run --name test -d bind9-dyndns-docker:dev_local \
+docker run --name test \
     -p 53:53/udp \
     -p 53:53/tcp \
     -p 8080:80  \
-    -e DOMAIN=example.com
+    -e DOMAIN=example.com \
+    -d bind9-dyndns-docker:dev_local
