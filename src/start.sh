@@ -12,9 +12,7 @@ done
 
 chown -R root:bind /etc/bind
 chown -R bind:bind /var/lib/bind
-chown -R www-data:www-data /var/www
-chown -R www-data:www-data /var/lib/nginx
 
 /etc/init.d/php8.1-fpm start
 /etc/init.d/named start
-su -s /bin/bash -c "/usr/sbin/nginx -g 'daemon off;'" www-data
+/usr/sbin/nginx -g 'daemon off;'

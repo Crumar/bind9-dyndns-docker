@@ -22,3 +22,7 @@ This will delete & add the following entries
 # Production Usage
 
 You should secure the update.php with authentication and HTTPs, e.g. using traefik.
+
+# TODO
+
+ - [ ] Stop running nginx as root within container
