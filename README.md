@@ -8,11 +8,11 @@ Example usage (not production ready):
         -p 53:53/udp \
         -p 53:53/tcp \
         -p 8080:80  \
-        -e DOMAIN=example.com
+        -e DOMAIN="example.de|example.com"
 
-This creates a zone `d.example.com`, whose subdomains can be set using the `update.php` like this:
+This creates two zones `d.example.com` and `d.example.de`, whose subdomains can be set using the `<DOMAIN>.php` like this:
 
-    curl -X GET http://localhost:8080/update.php?subdomain=abc&addr=123.123.123.123&source=curltest
+    curl -X GET http://localhost:8080/example.com.php?subdomain=abc&addr=123.123.123.123&source=curltest
 
 This will delete & add the following entries 
 
