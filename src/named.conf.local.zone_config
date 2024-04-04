@@ -1,7 +1,7 @@
 // Dynamic zone
 zone "d.<DOMAIN>" IN {
     type master;
-    file "/var/lib/bind/<DOMAIN>";
+    file "/var/lib/bind/d.<DOMAIN>";
     allow-update { 127.0.0.1; };
     notify no;
 };

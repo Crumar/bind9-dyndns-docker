@@ -1,3 +1,5 @@
+docker stop test
+docker rm test
 docker build -t bind9-dyndns-docker:dev_local .
 docker run --name test \
     -p 53:53/udp \
