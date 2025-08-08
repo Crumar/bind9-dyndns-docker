@@ -1,7 +1,8 @@
 FROM internetsystemsconsortium/bind9:9.20
 WORKDIR /
 RUN apk update
-RUN apk add dnsutils nginx 
+RUN apk add bind-tools 
+RUN apk add nginx 
 RUN apk add php8.1-fpm
 RUN mkdir /template
 COPY ./src/update.php /template/update.php
