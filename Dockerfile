@@ -1,6 +1,6 @@
 FROM internetsystemsconsortium/bind9:9.20
 WORKDIR /
-RUN setup-apkrepos -c -1
+RUN setup-apkrepos -cf
 RUN apk update
 RUN apk add bind-tools 
 RUN apk add nginx 
