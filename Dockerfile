@@ -1,11 +1,12 @@
-FROM internetsystemsconsortium/bind9:9.18
+FROM internetsystemsconsortium/bind9:9.20
 WORKDIR /
 #RUN /sbin/setup-apkrepos -cf
 RUN apk update
 RUN apk add alpine-conf
 RUN setup-apkrepos -c -1
 RUN apk update
-RUN apk add bind-tools 
+RUN apk add bind-tools
+RUN apk add bash
 RUN apk add nginx 
 #RUN apk add php81-fpm
 RUN mkdir /template
@@ -20,5 +21,7 @@ RUN chmod +x /start.sh
 
 EXPOSE 80
 
-CMD ["/start.sh"]
+#ENTRYPOINT [ "/bin/bash" ]
+ENTRYPOINT [ "/start.sh" ]
+#CMD [""]
 
