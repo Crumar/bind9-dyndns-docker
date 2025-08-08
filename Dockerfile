@@ -1,6 +1,6 @@
 FROM internetsystemsconsortium/bind9:9.20
 WORKDIR /
-RUN apk update && apk add -y apt-transport-https
+RUN apk update
 RUN apk add -y dnsutils nginx 
 RUN apk add -y php8.1-fpm
 RUN mkdir /template
