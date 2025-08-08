@@ -1,4 +1,4 @@
-FROM internetsystemsconsortium/bind9:9.18
+FROM internetsystemsconsortium/bind9:9.20
 WORKDIR /
 RUN apt-get update && apt-get install -y apt-transport-https
 RUN apt-get install -y dnsutils nginx 
