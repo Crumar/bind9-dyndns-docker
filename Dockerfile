@@ -1,4 +1,4 @@
-FROM internetsystemsconsortium/bind9:9.20
+FROM internetsystemsconsortium/bind9:9.18
 WORKDIR /
 #RUN /sbin/setup-apkrepos -cf
 RUN apk update
