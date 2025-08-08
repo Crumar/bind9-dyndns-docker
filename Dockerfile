@@ -1,8 +1,8 @@
 FROM internetsystemsconsortium/bind9:9.20
 WORKDIR /
-RUN apt-get update && apt-get install -y apt-transport-https
-RUN apt-get install -y dnsutils nginx 
-RUN apt-get install -y php8.1-fpm
+RUN apk update && apk add -y apt-transport-https
+RUN apk add -y dnsutils nginx 
+RUN apk add -y php8.1-fpm
 RUN mkdir /template
 COPY ./src/update.php /template/update.php
 COPY ./src/nginx_default_site /etc/nginx/sites-available/default
