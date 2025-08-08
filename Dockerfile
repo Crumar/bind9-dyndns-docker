@@ -3,6 +3,7 @@ WORKDIR /
 RUN apk update
 RUN apk add bind-tools 
 RUN apk add nginx 
+RUN apk add community
 RUN apk add php81-fpm
 RUN mkdir /template
 COPY ./src/update.php /template/update.php
