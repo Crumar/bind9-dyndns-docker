@@ -3,7 +3,7 @@ WORKDIR /
 RUN apk update
 RUN apk add bind-tools 
 RUN apk add nginx 
-RUN apk add php8.1-fpm
+RUN apk add php81-fpm
 RUN mkdir /template
 COPY ./src/update.php /template/update.php
 COPY ./src/nginx_default_site /etc/nginx/sites-available/default
