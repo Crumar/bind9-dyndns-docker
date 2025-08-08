@@ -24,6 +24,6 @@ RUN chmod +x /start.sh
 EXPOSE 80
 
 #ENTRYPOINT [ "/bin/bash" ]
-#ENTRYPOINT [ "" ]
+ENTRYPOINT [ "" ]
 CMD ["/start.sh"]
 
