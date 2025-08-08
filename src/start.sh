@@ -11,8 +11,10 @@ for i in "${ADDR[@]}"; do
 done
 
 
-chown -R root:bind /etc/bind
+chown -R bind:bind /etc/bind
 chown -R bind:bind /var/lib/bind
+chown -R bind:bind /var/lib/bind
+chown -R bind:bind /var/cache/bind
 
 /etc/init.d/php8.1-fpm start
 /etc/init.d/nginx start
