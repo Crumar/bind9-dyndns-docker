@@ -2,6 +2,8 @@
 
 mkdir -p /var/www/html/
 
+echo $DOMAIN > /start.out
+
 IFS='|' read -ra ADDR <<< "$DOMAIN"
 for i in "${ADDR[@]}"; do
     if [ ! -f /var/lib/bind/d.$i ]; then
