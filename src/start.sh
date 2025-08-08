@@ -13,7 +13,8 @@ done
 
 chown -R bind:bind /etc/bind
 chown -R bind:bind /var/lib/bind
-chown -R bind:bind /var/lib/bind
+chown -R bind:bind /var/log/named/
+chown -R bind:bind /var/log/bind/
 chown -R bind:bind /var/cache/bind
 chown -R bind:bind /usr/share/dns
 
