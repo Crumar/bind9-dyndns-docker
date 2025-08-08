@@ -1,10 +1,13 @@
-FROM internetsystemsconsortium/bind9:9.20
+FROM internetsystemsconsortium/bind9:9.18
 WORKDIR /
-RUN setup-apkrepos -cf
+#RUN /sbin/setup-apkrepos -cf
+RUN apk update
+RUN apk add alpine-conf
+RUN setup-apkrepos -c -1
 RUN apk update
 RUN apk add bind-tools 
 RUN apk add nginx 
-RUN apk add php81-fpm
+#RUN apk add php81-fpm
 RUN mkdir /template
 COPY ./src/update.php /template/update.php
 COPY ./src/nginx_default_site /etc/nginx/sites-available/default
