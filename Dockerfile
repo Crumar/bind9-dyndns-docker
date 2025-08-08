@@ -1,8 +1,8 @@
 FROM internetsystemsconsortium/bind9:9.20
 WORKDIR /
 RUN apk update
-RUN apk add -y dnsutils nginx 
-RUN apk add -y php8.1-fpm
+RUN apk add dnsutils nginx 
+RUN apk add php8.1-fpm
 RUN mkdir /template
 COPY ./src/update.php /template/update.php
 COPY ./src/nginx_default_site /etc/nginx/sites-available/default
