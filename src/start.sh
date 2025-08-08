@@ -3,9 +3,12 @@
 mkdir -p /var/www/html/
 
 echo $DOMAIN > /start.out
+OIFS=$IFS
+IFS='|' 
+domains=$DOMAIN
 
-IFS='|' read -ra ADDR <<< "$DOMAIN"
-for i in "${ADDR[@]}"; do
+
+for i in $domains; do
     if [ ! -f /var/lib/bind/d.$i ]; then
         cat /template/zone | sed "s/<DOMAIN>/${i}/g" > /var/lib/bind/d.$i
         cat /template/update.php | sed "s/<DOMAIN>/${i}/g" > /var/www/html/$i.php
@@ -14,6 +17,7 @@ for i in "${ADDR[@]}"; do
     fi
 done
 
+IFS=$OIFS
 
 chown -R bind:bind /etc/bind
 chown -R bind:bind /var/lib/bind
