@@ -10,7 +10,6 @@ RUN apk add bash
 RUN apk add nginx 
 RUN apk add php php-fpm
 RUN mkdir /template
-RUN mkdir /var/www/html/
 
 COPY ./src/update.php /template/update.php
 COPY ./src/nginx_default_site /etc/nginx/sites-available/default
