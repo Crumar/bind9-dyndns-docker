@@ -17,6 +17,7 @@ chown -R bind:bind /var/log/named/
 chown -R bind:bind /var/log/bind/
 chown -R bind:bind /var/cache/bind
 chown -R bind:bind /usr/share/dns
+chown -R nginx:nginx /var/www/html
 
 /etc/init.d/php8.1-fpm start
 /etc/init.d/nginx start
