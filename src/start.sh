@@ -7,7 +7,6 @@ OIFS=$IFS
 IFS='|' 
 domains=$DOMAIN
 
-
 for i in $domains; do
     if [ ! -f /var/lib/bind/d.$i ]; then
         cat /template/zone | sed "s/<DOMAIN>/${i}/g" > /var/lib/bind/d.$i
@@ -26,7 +25,9 @@ chown -R bind:bind /var/log/bind/
 chown -R bind:bind /var/cache/bind
 chown -R bind:bind /usr/share/dns
 chown -R nginx:nginx /var/www/html
+chown -R nginx:nginx /etc/nginx
 
 /etc/init.d/php8.1-fpm start
 /etc/init.d/nginx start
+
 su -s /bin/bash -c "/usr/sbin/named -g" bind

@@ -12,7 +12,7 @@ RUN apk add php php-fpm
 RUN mkdir /template
 
 COPY ./src/update.php /template/update.php
-COPY ./src/nginx_default_site /etc/nginx/sites-available/default
+COPY ./src/nginx_default_site /etc/nginx/http.d/default.conf
 COPY ./src/zone /template/
 COPY ./src/root.hints /usr/share/dns/root.hints
 COPY ./src/named.conf.local.zone_config /template/
