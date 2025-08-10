@@ -1,0 +1,7 @@
+services:
+  bind:
+    build: ./docker/bind
+    ports:
+     - 53:53/tcp
+     - 53:53/udp
+    env_file: .env

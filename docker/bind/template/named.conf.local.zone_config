@@ -2,6 +2,6 @@
 zone "d.<DOMAIN>" IN {
     type master;
     file "/var/lib/bind/d.<DOMAIN>";
-    allow-update { 127.0.0.1; };
+    allow-update { 172.17.0.0/16; };
     notify no;
 };
