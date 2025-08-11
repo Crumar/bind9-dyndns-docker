@@ -1,14 +1,7 @@
-FROM internetsystemsconsortium/bind9:9.18
+FROM debian:bookworm-slim
 WORKDIR /
-
-RUN apk update
-RUN apk add alpine-conf
-RUN setup-apkrepos -c -1
-RUN apk update
-RUN apk add bind-tools
-RUN apk add bash
-RUN apk add nginx 
-RUN apk add php php-fpm
+RUN apt-get update && apt-get install -y apt-transport-https
+RUN apt-get install -y dnsutils nginx php8.2-fpm bind9 net-tools
 RUN mkdir /template
 
 COPY ./src/update.php /template/update.php
@@ -22,8 +15,9 @@ RUN chmod +x /start.sh
 
 
 EXPOSE 80
+EXPOSE 53
 
-#ENTRYPOINT [ "/bin/bash" ]
-ENTRYPOINT [ "" ]
+
+#ENTRYPOINT ["tail", "-f", "/dev/null"]
 CMD ["/start.sh"]
 
