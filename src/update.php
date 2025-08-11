@@ -10,12 +10,21 @@
                 1 => array('pipe', 'w')
         );
         $process = proc_open('nsupdate', $descriptorspec, $pipes, NULL, NULL);
+        $isValid4 = filter_var($address, FILTER_VALIDATE_IP, FILTER_FLAG_IPV4 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE);
+        $isValid6 = filter_var($address, FILTER_VALIDATE_IP, FILTER_FLAG_IPV6 | FILTER_FLAG_NO_PRIV_RANGE | FILTER_FLAG_NO_RES_RANGE);
 
+        if($isValid4 == $address){
+                $recordType="A";
+        } elseif ($isValid6 == $address) {
+                $recordType="AAAA";
+        } else {
+                http_response_code(400); exit;
+        }
 
         fwrite($pipes[0], "server 127.0.0.1\n");
-        fwrite($pipes[0], "update delete $subdomain.d.<DOMAIN>. A\n");
+        fwrite($pipes[0], "update delete $subdomain.d.<DOMAIN>. $recordType\n");
         fwrite($pipes[0], "update delete $subdomain.d.<DOMAIN>. TXT\n");
-        fwrite($pipes[0], "update add $subdomain.d.<DOMAIN>. 2 A $address\n");
+        fwrite($pipes[0], "update add $subdomain.d.<DOMAIN>. 2 $recordType $address\n");
         fwrite($pipes[0], "update add $subdomain.d.<DOMAIN>. 2 TXT \"Updated by $u $d\"\n\n");
         fclose($pipes[0]);
         print("\nReturn:\n");

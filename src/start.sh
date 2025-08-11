@@ -1,6 +1,15 @@
 #!/bin/bash
 
+nameddirs=("/etc/bind" "/var/bind" "/var/lib/bind" "/var/log/named" "/var/log/bind" "/usr/share/dns" "/var/cache/bind" "/var/cache/named")
+nginxdirs=("/var/www/html" "/etc/nginx")
 
+for d in ${nameddirs[@]}; do 
+    mkdir -p $d
+done
+
+for d in ${nginxdirs[@]}; do 
+    mkdir -p $d
+done
 
 IFS='|' read -ra ADDR <<< "$DOMAIN"
 for i in "${ADDR[@]}"; do
@@ -12,10 +21,23 @@ for i in "${ADDR[@]}"; do
     fi
 done
 
+for d in ${nameddirs[@]}; do 
+    chown -R bind:bind $d
+done
 
-chown -R root:bind /etc/bind
-chown -R bind:bind /var/lib/bind
+for d in ${nginxdirs[@]}; do 
+    chown -R www-data:www-data $d
+done
 
-/etc/init.d/php8.1-fpm start
+/etc/init.d/php8.2-fpm start
 /etc/init.d/nginx start
-su -s /bin/bash -c "/usr/sbin/named -g" bind
+
+shopt -s nullglob dotglob     # To include hidden files
+files=(/var/lib/bind/*)
+
+
+if [ ${#files[@]} -gt 0 ]; then 
+    su -s /bin/bash -c "/usr/sbin/named -g" bind
+else
+    echo "No domains found in $DOMAIN"
+fi

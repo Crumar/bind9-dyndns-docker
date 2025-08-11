@@ -1,8 +1,7 @@
-FROM internetsystemsconsortium/bind9:9.18
+FROM debian:bookworm-slim
 WORKDIR /
 RUN apt-get update && apt-get install -y apt-transport-https
-RUN apt-get install -y dnsutils nginx 
-RUN apt-get install -y php8.1-fpm
+RUN apt-get install -y dnsutils nginx php8.2-fpm bind9 net-tools
 RUN mkdir /template
 COPY ./src/update.php /template/update.php
 COPY ./src/nginx_default_site /etc/nginx/sites-available/default
@@ -14,6 +13,8 @@ RUN chmod +x /start.sh
 
 
 EXPOSE 80
+EXPOSE 53
 
+#ENTRYPOINT ["tail", "-f", "/dev/null"]
 CMD ["/start.sh"]
 
