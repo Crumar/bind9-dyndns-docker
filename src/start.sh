@@ -36,8 +36,8 @@ shopt -s nullglob dotglob     # To include hidden files
 files=(/var/lib/bind/*)
 
 
-if [ ${#files[@]} -gt 0 ]; then 
-    su -s /bin/bash -c "/usr/sbin/named -g" bind
+if [ ${#files[@]} -gt 0 ]; then
+    exec su -s /bin/bash -c "exec /usr/sbin/named -g" bind
 else
     echo "No domains found in $DOMAIN"
 fi
