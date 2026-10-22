@@ -3,6 +3,11 @@ name: Publish Docker Image
 on:
   push:
     branches: [ "main" ]
+  # Weekly rebuild so Debian security updates (PHP, bind9, nginx) reach the
+  # image even when the repo itself doesn't change.
+  schedule:
+    - cron: "17 4 * * 1"
+  workflow_dispatch:
 
 jobs:
 
@@ -34,7 +39,8 @@ jobs:
           type=semver,pattern={{version}}
           type=semver,pattern={{major}}.{{minor}}
           type=semver,pattern={{major}}
-          type=sha           
+          type=sha
+          type=raw,value=latest,enable={{is_default_branch}}
 
     - name: Build and push Docker image
       uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
@@ -42,5 +48,8 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
+        # Always start from the current debian:bookworm-slim and re-run apt.
+        pull: true
+        no-cache: true
         tags: ${{ steps.meta.outputs.tags }}
         labels: ${{ steps.meta.outputs.labels }}
